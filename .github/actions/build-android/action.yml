@@ -129,22 +129,22 @@ runs:
         unzip -l ./tools/love-android/app/build/outputs/apk/*/debug/app-embed-*-debug.apk | grep -i '.so'
         mkdir -p ${{ inputs.output_folder }}/apk/debug
         mv -v ./tools/love-android/app/build/outputs/apk/*/debug/app-embed-*-debug.apk ${{ inputs.output_folder }}/apk/debug/${{ inputs.product_file }}-debug.apk
-    - name: Build Android release .apk
-      shell: bash
-      run: |
-        pushd ./tools/love-android
-          ./gradlew assembleEmbed${{ inputs.android_record }}Release
-        popd
-        unzip -l ./tools/love-android/app/build/outputs/apk/*/release/app-embed-*-release-unsigned.apk | grep -i '.so'
-        mkdir -p ${{ inputs.output_folder }}/apk/release
-        mv -v ./tools/love-android/app/build/outputs/apk/*/release/app-embed-*-release-unsigned.apk ${{ inputs.output_folder }}/apk/release/${{ inputs.product_file }}-release.apk
-    - name: Build Android .aab
-      if: ${{ inputs.build_type == 'release' }}
-      shell: bash
-      run: |
-        pushd ./tools/love-android
-          ./gradlew bundleEmbed${{ inputs.android_record }}Release
-        popd
-        unzip -l ./tools/love-android/app/build/outputs/bundle/*/app-embed-*-release.aab | grep -i '.so'
-        mkdir -p ${{ inputs.output_folder }}/aab/release
-        mv -v ./tools/love-android/app/build/outputs/bundle/*/app-embed-*-release.aab ${{ inputs.output_folder }}/aab/release/${{ inputs.product_file }}-release.aab
+#    - name: Build Android release .apk
+#      shell: bash
+#      run: |
+#        pushd ./tools/love-android
+#          ./gradlew assembleEmbed${{ inputs.android_record }}Release
+#        popd
+#        unzip -l ./tools/love-android/app/build/outputs/apk/*/release/app-embed-*-release-unsigned.apk | grep -i '.so'
+#        mkdir -p ${{ inputs.output_folder }}/apk/release
+#        mv -v ./tools/love-android/app/build/outputs/apk/*/release/app-embed-*-release-unsigned.apk ${{ inputs.output_folder }}/apk/release/${{ inputs.product_file }}-release.apk
+#    - name: Build Android .aab
+#      if: ${{ inputs.build_type == 'release' }}
+#      shell: bash
+#      run: |
+#        pushd ./tools/love-android
+#          ./gradlew bundleEmbed${{ inputs.android_record }}Release
+#        popd
+#        unzip -l ./tools/love-android/app/build/outputs/bundle/*/app-embed-*-release.aab | grep -i '.so'
+#        mkdir -p ${{ inputs.output_folder }}/aab/release
+#        mv -v ./tools/love-android/app/build/outputs/bundle/*/app-embed-*-release.aab ${{ inputs.output_folder }}/aab/release/${{ inputs.product_file }}-release.aab
